@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:note/services/note_service.dart';
+import 'package:note/utils/colors.dart';
 import 'package:note/utils/constant.dart';
 import 'package:note/utils/text_style.dart';
 
@@ -56,13 +58,37 @@ class _CreateNotePageState extends State<CreateNotePage> {
                   children: [
 
                     //drop Down
-                    Container(
+                   widget.isNewCategory ? Container() :  Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: DropdownButtonFormField(
+                        style: TextStyle(
+                          color: AppColors.kWhiteColor,
+                          fontFamily: GoogleFonts.dmSans().fontFamily,
+                          fontWeight: FontWeight.w500,fontSize: 20,
+                        ),
+                        isExpanded: false,
+                        hint: Text("category"),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              color: AppColors.kWhiteColor.withOpacity(0.1),
+                              width: 2
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              color: AppColors.kWhiteColor.withOpacity(0.1),
+                              width: 1,
+                            ),
+                          ),
+                        ),
                         items: categories.map((String category) {
                           return DropdownMenuItem<String>(
+                            value: category,
                             child: Text(
                               category,
                             style: AppTextStyles.appButton,
@@ -70,6 +96,78 @@ class _CreateNotePageState extends State<CreateNotePage> {
                           );
                         }).toList(),
                         onChanged: (value){}),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    //title field
+                    TextFormField(
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: AppColors.kWhiteColor,
+                        fontSize: 30,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Note Content",
+                        hintStyle: TextStyle(
+                          color: AppColors.kWhiteColor.withOpacity(0.5),
+                          fontSize: 35,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    //content
+                    TextFormField(
+                      maxLines: 12,
+                      style: TextStyle(
+                        color: AppColors.kWhiteColor,
+                        fontSize: 20,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Note Title",
+                        hintStyle: TextStyle(
+                          color: AppColors.kWhiteColor.withOpacity(0.5),
+                          fontSize: 20,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    Divider(
+                      color: AppColors.kWhiteColor.withOpacity(0.2),
+                      thickness: 1,
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(AppColors.kFabColor),
+                          ),
+                          onPressed: (){}, 
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text("Save Note",
+                            style: AppTextStyles.appButton,
+                            ),
+                            ),),
+                      ],
                     ),
                   ],
                 ),),
