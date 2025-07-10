@@ -58,7 +58,44 @@ class _CreateNotePageState extends State<CreateNotePage> {
                   children: [
 
                     //drop Down
-                   widget.isNewCategory ? Container() :  Container(
+                   widget.isNewCategory 
+                   ? Container(
+                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        style: TextStyle(
+                        color: AppColors.kWhiteColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "New Category",
+                        hintStyle: TextStyle(
+                          color: AppColors.kWhiteColor.withOpacity(0.5),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                           fontFamily: GoogleFonts.dmSans().fontFamily,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: AppColors.kWhiteColor.withOpacity(0.1),
+                          width: 2
+                        ),
+                        
+                      ),
+                     focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              color: AppColors.kWhiteColor.withOpacity(0.1),
+                              width: 1,
+                            ),
+                          ),
+                    ), 
+                   )
+                   )
+                   :  Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                       ),
